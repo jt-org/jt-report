@@ -204,15 +204,6 @@
 		</plugins>
 	</reporting>
 
-	<!-- <distributionManagement> <repository> <id>sonatype-joda-staging</id> 
-		<name>Sonatype OSS staging repository</name> <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url> 
-		<layout>default</layout> </repository> <snapshotRepository> <uniqueVersion>false</uniqueVersion> 
-		<id>sonatype-joda-snapshot</id> <name>Sonatype OSS snapshot repository</name> 
-		<url>http://oss.sonatype.org/content/repositories/joda-snapshots</url> <layout>default</layout> 
-		</snapshotRepository> <site> <id>sf-web-joda-time</id> <name>Sourceforge 
-		Site</name> <url>scpexe://shell.sourceforge.net/home/project-web/joda-time/htdocs</url> 
-		</site> <downloadUrl>http://oss.sonatype.org/content/repositories/joda-releases</downloadUrl> 
-		</distributionManagement> -->
 	<profiles>
 		<profile>
 			<id>repo-sign-artifacts</id>
@@ -224,11 +215,6 @@
 			</activation>
 			<build>
 				<plugins>
-					<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-toolchains-plugin</artifactId> 
-						<version>1.0</version> <executions> <execution> <phase>validate</phase> <goals> 
-						<goal>toolchain</goal> </goals> </execution> </executions> <configuration> 
-						<toolchains> <jdk> <version>1.5</version> <vendor>sun</vendor> </jdk> </toolchains> 
-						</configuration> </plugin> -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
