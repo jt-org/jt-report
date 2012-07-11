@@ -1,0 +1,55 @@
+@CHARSET "ISO-8859-1";
+
+.Center {
+	text-align: center;
+}
+
+.ResultTable {
+	table-layout: fixed;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.Wrapper {
+	width: 1000px;
+}
+
+.TdBorder {
+	border: 1px solid black;
+}
+
+.SummaryDescription {
+	margin-bottom: 5px;
+}
+
+.PASSED {
+	background-image: url('img/greenBall.png');
+	background-repeat: no-repeat;
+	height: 40px;
+	text-align: center;
+	background-position: center;
+}
+
+.FAIL {
+	background-image: url('img/yellowBall.png');
+	background-repeat: no-repeat;
+	height: 40px;
+	text-align: center;
+	background-position: center;
+}
+
+.ERROR {
+	background-image: url('img/redBall.png');
+	background-repeat: no-repeat;
+	height: 40px;
+	text-align: center;
+	background-position: center;
+}
+
+.IGNORED {
+	background-image: url('img/greyBall.png');
+	background-repeat: no-repeat;
+	height: 40px;
+	text-align: center;
+	background-position: center;
+}
