@@ -34,6 +34,7 @@ public class SimpleExamplesTest extends JtreportRunner {
 				});
 	}
 
+	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
 	public void simpleTest1() {
@@ -51,12 +52,14 @@ public class SimpleExamplesTest extends JtreportRunner {
 	public void simpleTest3() {
 	}
 
+	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
 	public void simpleTest4() {
 		Assert.assertEquals("Are the same", 0, 1);
 	}
 
+	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...", failed = "This ovverride the failed massage.")
 	public void simpleTest5() {
@@ -70,6 +73,7 @@ public class SimpleExamplesTest extends JtreportRunner {
 		x.intValue();
 	}
 
+	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...", error = "This ovverride the error massage.")
 	public void simpleTest7() {
