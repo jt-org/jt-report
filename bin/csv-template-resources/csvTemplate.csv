@@ -1,0 +1,8 @@
+Test report result: $StringEscapeUtils.escapeHtml($testClassName)
+Descrizione;$StringEscapeUtils.escapeHtml($summaryDescription)
+test superati $totalPassed, test in errore $totalError, test falliti $totalFail, test ignorati $totalIgnore, durata $totalDuration ms.
+
+Test Name;State;Description;State comment;Other comment;
+#foreach( $test in $testList )
+$StringEscapeUtils.escapeHtml($test.getTestClassName())#$StringEscapeUtils.escapeHtml($test.getTestMethodName());$test.getTestState().name();$StringEscapeUtils.escapeHtml($test.getDescriptionComment());$StringEscapeUtils.escapeHtml($test.getResultDescription())
+#end

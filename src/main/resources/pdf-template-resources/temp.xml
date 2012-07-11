@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e0a873f-9ae8-4295-9456-3b25232329f8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="xPath">
+		<![CDATA[/jtreport/test]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="state" class="java.lang.String">
+		<fieldDescription><![CDATA[state]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[description]]></fieldDescription>
+	</field>
+	<field name="statecomment" class="java.lang.String">
+		<fieldDescription><![CDATA[statecomment]]></fieldDescription>
+	</field>
+	<field name="othercomment" class="java.lang.String">
+		<fieldDescription><![CDATA[othercomment]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<image>
+				<reportElement uuid="75238f4c-2b95-4b98-a216-a0712505e6b8" x="313" y="0" width="242" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_green.png"]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement uuid="9498aed9-2e5a-46c9-85ef-3dfdd78777bc" x="8" y="14" width="200" height="100"/>
+				<connectionExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//general"))]]></connectionExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b86dfa1f-7a83-4f5a-97d6-d5bd69dcf56b" x="0" y="21" width="111" height="20"/>
+				<textElement/>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1caaa13c-9868-4e2e-8895-db6043d90fed" x="111" y="21" width="111" height="20"/>
+				<textElement/>
+				<text><![CDATA[state]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed37a7e5-7077-4aa7-811b-d58a88936881" x="222" y="21" width="111" height="20"/>
+				<textElement/>
+				<text><![CDATA[description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="58c372b7-61d3-45dd-9d0f-913f9d091eae" x="333" y="21" width="111" height="20"/>
+				<textElement/>
+				<text><![CDATA[statecomment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4ff3aa1c-a0f4-4047-8fcf-91bfeac56a7e" x="444" y="21" width="111" height="20"/>
+				<textElement/>
+				<text><![CDATA[othercomment]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="72" splitType="Stretch">
+			<textField>
+				<reportElement uuid="bfa969e3-2d87-4140-90ad-65d975ad1c89" x="0" y="0" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8815f58b-1719-43b4-9a92-24958536cc43" x="111" y="0" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f5edd246-28ec-4063-8391-37284a1cafc3" x="222" y="0" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fe1e483c-08cf-43bb-bead-cecf6605011b" x="333" y="0" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{statecomment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="27ec76ef-1480-4b67-82db-22264ca5111a" x="444" y="0" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{othercomment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="0c3c4696-c37e-40db-aa4d-ab159588bab7" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c66d840e-d9bf-4118-9103-48455fba472c" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="eca8e37c-ee42-4fbc-b1cc-ad26b76ad6f8" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="172baf86-fa19-44d9-9ff0-d5fed26fd16c" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

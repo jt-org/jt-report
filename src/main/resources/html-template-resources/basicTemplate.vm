@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test Result Report</title>
+<link rel="stylesheet" href="style/css/basicStyle.css" />
+</head>
+<body>
+	<div>
+		<table>
+			<tr>
+				<td class="Wrapper">
+					<h1>Test report result: $StringEscapeUtils.escapeHtml($testClassName)</h1>
+					<h3>Run date: $StringEscapeUtils.escapeHtml($testDate) Duration: $totalDuration ms</h3>
+					<div class="SummaryDescription">
+					<h3>General description:</h3>
+					<p>$StringEscapeUtils.escapeHtml($summaryDescription)</p>
+					 </div>
+					<h3>Totoal test: $totalRun, Passd: $totalPassed, Fail: $totalFail, Error: $totalError, Ignore: $totalIgnore	</h3>
+					<table class="ResultTable">
+						<tr class="Header">
+							<th class="TdBorder">State</th>
+							<th class="TdBorder">Test name</th>
+							<th class="TdBorder">Description</th>
+							<th class="TdBorder">State comment</th>
+							<th class="TdBorder">Date:</th>
+						</tr>
+						
+						#foreach( $test in $testList )
+						<tr class="content">
+							<td class="$test.getTestState().name() TdBorder"></td>
+							<td class="TdBorder">$StringEscapeUtils.escapeHtml($test.getTestClassName())#$StringEscapeUtils.escapeHtml($test.getTestMethodName())</td>
+							<td class="TdBorder">$StringEscapeUtils.escapeHtml($test.getDescriptionComment())</td>
+							<td class="TdBorder">$StringEscapeUtils.escapeHtml($test.getFormattdDate())</td>
+						</tr>
+						#end
+						
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>
