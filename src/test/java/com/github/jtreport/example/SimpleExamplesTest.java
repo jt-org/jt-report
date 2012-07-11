@@ -66,6 +66,7 @@ public class SimpleExamplesTest extends JtreportRunner {
 		Assert.assertEquals("Are the same", 0, 1);
 	}
 
+	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
 	public void simpleTest6() {
