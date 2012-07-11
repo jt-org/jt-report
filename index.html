@@ -71,15 +71,28 @@
 									of classes and individual tests via annotations,
 									or put the information provided by the tests in your own Velocity template.
 								</p>
+								<br />								
 								</div>
-								
 							<div class="box">
 								<div class="border-top">
 									<div class="border-right">
 										<div class="border-bot">
 											<div class="border-left">
 												<div class="inner">
-												<h2>Exapmple: </h2>
+												<h2>Exapmples:  
+								<a href="docs/com.github.jtreport.example.SimpleExamplesTest.pdf" target="_blank">
+								<img src="images/fileMime/pdf_icon.png" width="32" height="32" border="0" style="border:none;" alt="Photo of Byron Bay - one of Australia's best beaches!" />
+								</a>
+								<a href="docs/com.github.jtreport.example.SimpleExamplesTest.ods" target="_blank">
+								<img src="images/fileMime/calc_Icon.png" width="25" height="32" border="0" style="border:none;" alt="Photo of Byron Bay - one of Australia's best beaches!" />
+								</a>
+								<a href="docs/com.github.jtreport.example.SimpleExamplesTest.odt" target="_blank">
+								<img src="images/fileMime/writer_Icon.png" width="25" height="32" border="0" style="border:none;" alt="Photo of Byron Bay - one of Australia's best beaches!" />
+								</a>
+<!-- 								<a href="docs/com.github.jtreport.example.SimpleExamplesTest.xml" target="_blank">
+								<img src="images/fileMime/xml_icon.png" width="32" height="32" border="0" style="border:none;" alt="Photo of Byron Bay - one of Australia's best beaches!" />
+								</a> -->
+								</h2>
 <pre class="brush: java">
 @RunWith(ReportTestRunner.class)
 @TestClassReport(description = "Put here the description for this test Class.")
@@ -96,7 +109,6 @@ public class SimpleExamplesTest extends JtreportRunner {
 						this.add(ReportTypePrinterEnum.PDF);
 						this.add(ReportTypePrinterEnum.ODT);
 						this.add(ReportTypePrinterEnum.ODS);
-
 					}
 				});
 	}
