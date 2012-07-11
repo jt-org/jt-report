@@ -1,0 +1,14 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 changes-1.0.0.xsd">
+	<properties>
+		<title>Jt-report Release Notes</title>
+		<author email="jtreportorg@gmail.com">Fabio Rubino</author>
+	</properties>
+	<body>
+		<release version="0.0.1" date="2012-5-16" description="Start up the base project implementation.">
+		<action  dev="frubino" type="add">Start the project</action>
+		<action  dev="frubino" type="add">HTMLprinter</action>
+		<action  dev="frubino" type="add">Custom Velocity template input</action>
+		</release>
+	</body>
+</document>

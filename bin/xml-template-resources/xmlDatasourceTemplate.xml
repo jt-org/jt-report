@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jtreport>
+		<general>
+			<testclass>
+			Test report result: $StringEscapeUtils.escapeHtml($testClassName)
+			</testclass>
+			<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
+			<duration>$totalDuration ms</duration>
+			<totpassed>$totalPassed</totpassed>
+			<toterror>$totalError</toterror>
+			<totfail>$totalFail</totfail>
+			<totinogre>$totalIgnore</totinogre>
+		</general>
+	
+	#foreach( $test in $testList )
+	<test>
+		<name>
+		$StringEscapeUtils.escapeHtml($test.getTestClassName())#$StringEscapeUtils.escapeHtml($test.getTestMethodName())
+		</name>
+		<state>$test.getTestState().name()</state>
+		<description>
+		$StringEscapeUtils.escapeHtml($test.getDescriptionComment())
+		</description>
+		<statecomment>
+		$StringEscapeUtils.escapeHtml($test.getResultDescription())
+		</statecomment>
+	</test>
+	#end
+	
+</jtreport>
