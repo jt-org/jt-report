@@ -1,0 +1,15 @@
+com.github.jtreport.annotation
+com.github.jtreport.core
+com.github.jtreport.datasource
+com.github.jtreport.printer.core
+com.github.jtreport.printer.csv
+com.github.jtreport.printer.html
+com.github.jtreport.printer.jrxml
+com.github.jtreport.printer.ods
+com.github.jtreport.printer.odt
+com.github.jtreport.printer.pdf
+com.github.jtreport.printer.png
+com.github.jtreport.printer.velocity
+com.github.jtreport.printer.xhtml
+com.github.jtreport.printer.xml
+com.github.jtreport.utils

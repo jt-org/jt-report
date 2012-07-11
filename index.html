@@ -1,78 +1,173 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Jt-report - Java test report with annotation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="Junit, testng, selenium, report, test, java, annotation" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="layout.css" rel="stylesheet" type="text/css" />
+<link href="shCore.css" rel="stylesheet" type="text/css" />
+<link href="shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="javascript/sh/shCore.js"></script>
+<script type="text/javascript" src="javascript/sh/shBrushJava.js"></script>
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+</head>
+<body id="page2">
+	<div id="main">
+		<!-- header -->
+		<div id="header">
+			<div class="logo">
+				<a href="home.html"><img src="images/lgo.png" alt="" /></a>
+				<h3>Java test report with annotation</h3>
+			</div>
+		</div>
 
-    <title>Jt-report by jt-org</title>
-  </head>
+	</div>
 
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Jt-report</h1>
-        <h2>Java test report framework</h2>
-        <a href="https://github.com/jt-org/jt-report" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+	<!-- content -->
+	<div id="content">
+		<div class="inner_copy">.:.:.</div>
+		<div class="wrapper">
+			<table>
+				<tr>
+					<td valign="top">
+						<div class="col-1">
+							<div class="box">
+								<div class="border-top">
+									<div class="border-right">
+										<div class="border-bot">
+											<div class="border-left">
+												<div class="inner">
+													<h2>Choose your way</h2>
+													<ul class="list">
+														<li><span><a href="index.html">Home page</a></span></li>
+														<li><span><a href="https://github.com/jt-org/jt-report/downloads">Download</a></span></li>
+														<li><span><a href="apidocs/index.html">API</a></span></li>
+														<li><span><a href="https://github.com/jt-org/jt-report/wiki">Wiki</a></span></li>
+														<li><span><a href="https://github.com/jt-org/jt-report/blob/master/src/changes/changes.xml">Changes</a></span></li>
+														<li><span><a href="https://github.com/jt-org/jt-report/pulls">Request</a></span></li>
+														<li><span><a href="https://github.com/jt-org/jt-report/issues">Issue</a></span></li>
+														<li class="last"><span><a href="https://github.com/jt-org/jt-report">Source</a></span></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="col-2">
+							<div class="indent">
+								<h1>Introduction</h1>
+								<p>Jtreport born with the idea to simplify and expand 
+								the possibilities of automatic test reports.
+								</p>
+								<br />								
+								<p>
+									Using Jtreport can introduce your own comments and description
+									of classes and individual tests via annotations,
+									or put the information provided by the tests in your own Velocity template.
+								</p>
+								</div>
+								
+							<div class="box">
+								<div class="border-top">
+									<div class="border-right">
+										<div class="border-bot">
+											<div class="border-left">
+												<div class="inner">
+												<h2>Exapmple: </h2>
+<pre class="brush: java">
+@RunWith(ReportTestRunner.class)
+@TestClassReport(description = "Put here the description for this test Class.")
+public class SimpleExamplesTest extends JtreportRunner {
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>Welcome to GitHub Pages.</h3>
+	@Override
+	public ReportSummary initalizeReport() {
+		return new ReportSummary("/tmp/jtreportDir",
+				new ArrayList&lt;ReportTypePrinterEnum&gt;() {
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+					private static final long serialVersionUID = 1L;
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+					{
+						this.add(ReportTypePrinterEnum.PDF);
+						this.add(ReportTypePrinterEnum.ODT);
+						this.add(ReportTypePrinterEnum.ODS);
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+					}
+				});
+	}
 
-<h3>Designer Templates</h3>
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
+	public void simpleTest1() {
+	}
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+	@Ignore("Put here why this test is skipped")
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
+	public void simpleTest2() {
+	}
 
-<h3>Rather Drive Stick?</h3>
+	@Ignore("This comment was override in the report")
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", ignored = "Put here why this test is skipped. This comment go in the test report", expectations = "Put here the expectations test of the test...")
+	public void simpleTest3() {
+	}
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
+	public void simpleTest4() {
+		Assert.assertEquals("Are the same", 0, 1);
+	}
 
-<h3>Authors and Contributors</h3>
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...", failed = "This ovverride the failed massage.")
+	public void simpleTest5() {
+		Assert.assertEquals("Are the same", 0, 1);
+	}
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
+	public void simpleTest6() {
+		final Integer x = null;
+		x.intValue();
+	}
 
-<h3>Support or Contact</h3>
+	@Test
+	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...", error = "This ovverride the error massage.")
+	public void simpleTest7() {
+		final Integer x = null;
+		x.intValue();
+	}
+}
+</pre>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
+	<!-- footer -->
+	<div id="footer">
+		<div class="indent">
+			<div class="fleft">Copyrights - Fabio Rubino</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+SyntaxHighlighter.defaults['toolbar'] = false;
 
-        <aside id="sidebar">
-          <a href="https://github.com/jt-org/jt-report/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/jt-org/jt-report/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/jt-org/jt-report"></a> is maintained by <a href="https://github.com/jt-org">jt-org</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+     SyntaxHighlighter.all()
+</script>
+</body>
 </html>
