@@ -37,6 +37,7 @@ public class SimpleExamplesTest extends JtreportRunner {
 				});
 	}
 
+	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
 	public void simpleTest1() {
