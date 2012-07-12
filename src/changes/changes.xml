@@ -5,8 +5,9 @@
 		<author email="jtreportorg@gmail.com">Fabio Rubino</author>
 	</properties>
 	<body>
+		<release version="0.0.2" date="2012-5-17" description="" />
 		<release version="0.0.1" date="2012-5-16" description="Start up the base project implementation.">
-		<action  dev="frubino" type="add">Start the project</action>
+			<action  dev="frubino" type="add">Start the project</action>
 		</release>
 	</body>
 </document>
