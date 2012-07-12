@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+    	<groupId>org.sonatype.oss</groupId>
+    	<artifactId>oss-parent</artifactId>
+    	<version>7</version>
+  	</parent>
 	<groupId>com.github.jt-org</groupId>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>jt-report</artifactId>
@@ -203,7 +208,24 @@
 			</plugin>
 		</plugins>
 	</reporting>
-
+	
+<!--  <distributionManagement>
+    <repository>
+      <id>sonatype-jtreport-staging</id>
+      <name>Sonatype OSS staging repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>sonatype-jtreport-snapshot</id>
+      <name>Sonatype OSS snapshot repository</name>
+      <url> https://oss.sonatype.org/content/repositories/snapshots</url>
+      <layout>default</layout>
+    </snapshotRepository>
+    <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+  </distributionManagement> -->
+  
 	<profiles>
 		<profile>
 			<id>repo-sign-artifacts</id>
