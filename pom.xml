@@ -2,12 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<groupId>com.github.jt-report</groupId>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>jtreport</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<artifactId>jt-report</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>Jt-report Java test report</name>
 	<packaging>jar</packaging>
 	<description>This project want create a framework to automatic report of test.
 	</description>
+	<url>http://jt-org.github.com/jt-report/</url>
 	<inceptionYear>2012</inceptionYear>
 	<developers>
 		<developer>
