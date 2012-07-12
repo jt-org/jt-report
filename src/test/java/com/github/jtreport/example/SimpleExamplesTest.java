@@ -29,12 +29,14 @@ public class SimpleExamplesTest extends JtreportRunner {
 						this.add(ReportTypePrinterEnum.PDF);
 						this.add(ReportTypePrinterEnum.ODT);
 						this.add(ReportTypePrinterEnum.ODS);
+						this.add(ReportTypePrinterEnum.XML);
+						this.add(ReportTypePrinterEnum.PNG);
+						this.add(ReportTypePrinterEnum.XHTML);
 
 					}
 				});
 	}
 
-	@Ignore
 	@Test
 	@TestSingleReport(description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
 	public void simpleTest1() {
