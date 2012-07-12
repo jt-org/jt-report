@@ -21,11 +21,31 @@ public class TestClassResult {
 	private int totalIgnored = 0;
 	private final String testClassName;
 
-	public TestClassResult(final String testClassName,
-			final Collection<TestMethodResult> testMethodResultList,
-			final String descriptionSummary, final long runningTime,
-			final int totalRun, final int totalPassed, final int totalFailed,
-			final int totalError, final int totalIgnored) {
+	/**
+	 * Default Constructor
+	 * 
+	 * @param testClassName
+	 *            test class name.
+	 * @param testMethodResultList
+	 *            result list of the test in this class.
+	 * @param descriptionSummary
+	 *            general description for this test.
+	 * @param runningTime
+	 *            total running time.
+	 * @param totalRun
+	 *            total test executed.
+	 * @param totalPassed
+	 *            total test passed.
+	 * @param totalFailed
+	 *            total test faild.
+	 * @param totalError
+	 *            total test in error.
+	 * @param totalIgnored
+	 *            total test ignored.
+	 */
+	public TestClassResult(final String testClassName, final Collection<TestMethodResult> testMethodResultList,
+			final String descriptionSummary, final long runningTime, final int totalRun, final int totalPassed,
+			final int totalFailed, final int totalError, final int totalIgnored) {
 		this.testMethodResultList = testMethodResultList;
 		this.descriptionSummary = descriptionSummary;
 		this.runningTime = runningTime;
@@ -37,75 +57,74 @@ public class TestClassResult {
 		this.testClassName = testClassName;
 	}
 
-	public TestClassResult(final String testClassName,
-			final String descriptionSummary) {
+	public TestClassResult(final String testClassName, final String descriptionSummary) {
 		this.descriptionSummary = descriptionSummary;
 		this.testClassName = testClassName;
 	}
 
 	public void addRunningTime(final long time) {
-		this.runningTime += time;
+		runningTime += time;
 	}
 
 	public void addTestError() {
-		this.totalError++;
+		totalError++;
 	}
 
 	public void addTestFailed() {
-		this.totalFailed++;
+		totalFailed++;
 	}
 
 	public void addTestIgnored() {
-		this.totalIgnored++;
+		totalIgnored++;
 	}
 
 	public void addTestMethodResult(final TestMethodResult testMethodResult) {
 		if (testMethodResult != null) {
-			this.testMethodResultList.add(testMethodResult);
+			testMethodResultList.add(testMethodResult);
 		}
 	}
 
 	public void addTestPassed() {
-		this.totalPassed++;
+		totalPassed++;
 	}
 
 	public void addTestRun() {
-		this.totalRun++;
+		totalRun++;
 	}
 
 	public String getDescriptionSummary() {
-		return this.descriptionSummary;
+		return descriptionSummary;
 	}
 
 	public long getRunningTime() {
-		return this.runningTime;
+		return runningTime;
 	}
 
 	public String getTestClassName() {
-		return this.testClassName;
+		return testClassName;
 	}
 
 	public Collection<TestMethodResult> getTestMethodResultList() {
-		return this.testMethodResultList;
+		return testMethodResultList;
 	}
 
 	public int getTotalError() {
-		return this.totalError;
+		return totalError;
 	}
 
 	public int getTotalFailed() {
-		return this.totalFailed;
+		return totalFailed;
 	}
 
 	public int getTotalIgnored() {
-		return this.totalIgnored;
+		return totalIgnored;
 	}
 
 	public int getTotalPassed() {
-		return this.totalPassed;
+		return totalPassed;
 	}
 
 	public int getTotalRun() {
-		return this.totalRun;
+		return totalRun;
 	}
 }

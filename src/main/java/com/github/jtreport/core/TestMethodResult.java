@@ -23,6 +23,30 @@ public class TestMethodResult {
 	private String testKey;
 	private final double runningTime;
 
+	/**
+	 * Default Constructor
+	 * 
+	 * @param descriptionResult
+	 *            {@link Description} of this test.
+	 * @param testClassName
+	 *            test class name.
+	 * @param testMethodName
+	 *            test method name.
+	 * @param testDescription
+	 *            description of the test.
+	 * @param testExpectations
+	 *            expectations for this test.
+	 * @param executionDate
+	 *            test execution time Date.
+	 * @param testState
+	 *            steate of the test.
+	 * @param resultDescription
+	 *            description result of this test.
+	 * @param runningTime
+	 *            test execution time.
+	 * @param testKey
+	 *            use test with key for velocity type of report.
+	 */
 	public TestMethodResult(final Description descriptionResult, final String testClassName,
 			final String testMethodName, final String testDescription, final String testExpectations,
 			final DateTime executionDate, final StateTestEnum testState, final String resultDescription,

@@ -93,6 +93,12 @@ public class ReportSummary {
 		this.templateWithKey = templateWithKey;
 	}
 
+	/**
+	 * Constructor for all type of printer using Properties file.
+	 * 
+	 * @param configFilePath
+	 *            the path of the proprties file.
+	 */
 	public ReportSummary(final String configFilePath) {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(configFilePath);
 		Properties configProp = new Properties();
