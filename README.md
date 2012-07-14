@@ -149,4 +149,100 @@ margeReport=[true|false] true if you want to merge the report in one single file
 
 ## 5. Velocity variables.
 
+with you templateWithKey=false
 
+```
+"testClassName"
+"testDate"
+"totalDuration"
+"totalRun"
+"totalPassed"
+"totalFail"
+"totalError"
+"totalIgnore"
+"summaryDescription"
+"StringEscapeUtils"
+```
+
+look the example
+```xml
+<jtreport>
+		<general>
+			<testclass>
+			Test report result: $StringEscapeUtils.escapeHtml($testClassName)
+			</testclass>
+			<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
+			<duration>$totalDuration ms</duration>
+			<totpassed>$totalPassed</totpassed>
+			<toterror>$totalError</toterror>
+			<totfail>$totalFail</totfail>
+			<totinogre>$totalIgnore</totinogre>
+		</general>
+	#foreach( $test in $testList )
+	<test>
+		<name>
+		$StringEscapeUtils.escapeHtml($test.getTestClassName())#$StringEscapeUtils.escapeHtml($test.getTestMethodName())
+		</name>
+		<state>$test.getTestState().name()</state>
+		<description>
+		$StringEscapeUtils.escapeHtml($test.getDescriptionComment())
+		</description>
+		<statecomment>
+		$StringEscapeUtils.escapeHtml($test.getResultDescription())
+		</statecomment>
+	</test>
+	#end
+</jtreport>
+```
+
+with you templateWithKey=true are the additional variables
+```
+testKey + "_descriptionComment"
+testKey + "_descriptionResult"
+testKey + "_testClassName"
+testKey + "_testMethodName"
+testKey + "_testDisplayName"
+testKey + "_testState"
+testKey + "_formattdDate"
+```
+
+where testKey are defined by keyCustomReport variable in TestClassReport annotation, and must be primary key for the report
+
+look the example
+```java
+@TestClassReport(description = "Put here the description for this test Class.")
+public class SimpleExamplesTest {
+	@TestSingleReport(keyCustomReport = "keyExampleTest1", description = "Put here the description for this test...", expectations = "Put here the expectations test of the test...")
+	public void simpleTest1() {
+	}
+}
+```
+
+Velocity template file
+```xml
+<jtreport>
+		<general>
+			<testclass>
+			Test report result: $StringEscapeUtils.escapeHtml($testClassName)
+			</testclass>
+			<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
+			<duration>$totalDuration ms</duration>
+			<totpassed>$totalPassed</totpassed>
+			<toterror>$totalError</toterror>
+			<totfail>$totalFail</totfail>
+			<totinogre>$totalIgnore</totinogre>
+		</general>
+	<test>
+		<name>
+		$StringEscapeUtils.escapeHtml($$keyExampleTest1_testClassName)#$StringEscapeUtils.escapeHtml($$keyExampleTest1_testMethodName)
+		</name>
+		<state>$keyExampleTest1_testState</state>
+		<description>
+		$StringEscapeUtils.escapeHtml($keyExampleTest1_descriptionComment)
+		</description>
+		<statecomment>
+		$StringEscapeUtils.escapeHtml($keyExampleTest1_resultDescription)
+		</statecomment>
+	</test>
+</jtreport>
+```

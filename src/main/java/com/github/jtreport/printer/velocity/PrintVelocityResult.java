@@ -97,7 +97,7 @@ public class PrintVelocityResult {
 							context.put(testKey + "_testDisplayName", testMethodResult.getDescriptionResult()
 									.getDisplayName());
 							context.put(testKey + "_testMethodName", testMethodResult.getTestMethodName());
-							context.put(testKey + "_testState", testMethodResult.getTestState());
+							context.put(testKey + "_testState", testMethodResult.getTestState().name());
 							context.put(testKey + "_formattdDate", testMethodResult.getFormattdDate());
 						}
 					}
