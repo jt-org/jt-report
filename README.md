@@ -134,7 +134,7 @@ public class SimpleExamplesTest extends JtreportRunner {
 
 ### jtreport.properties
 
-```java
+```
 jtreportDir=Report destination directory
 veolocityTemplatePath= path of velocity template, if needed
 customPrinterClass=Custom printer class implements IPrinterStrategy, if needed
