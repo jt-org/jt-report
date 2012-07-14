@@ -167,17 +167,17 @@ with you templateWithKey=false
 look the example
 ```xml
 <jtreport>
-		<general>
-			<testclass>
-			Test report result: $StringEscapeUtils.escapeHtml($testClassName)
-			</testclass>
-			<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
-			<duration>$totalDuration ms</duration>
-			<totpassed>$totalPassed</totpassed>
-			<toterror>$totalError</toterror>
-			<totfail>$totalFail</totfail>
-			<totinogre>$totalIgnore</totinogre>
-		</general>
+	<general>
+		<testclass>
+		Test report result: $StringEscapeUtils.escapeHtml($testClassName)
+		</testclass>
+		<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
+		<duration>$totalDuration ms</duration>
+		<totpassed>$totalPassed</totpassed>
+		<toterror>$totalError</toterror>
+		<totfail>$totalFail</totfail>
+		<totinogre>$totalIgnore</totinogre>
+	</general>
 	#foreach( $test in $testList )
 	<test>
 		<name>
@@ -221,17 +221,17 @@ public class SimpleExamplesTest {
 Velocity template file
 ```xml
 <jtreport>
-		<general>
-			<testclass>
-			Test report result: $StringEscapeUtils.escapeHtml($testClassName)
-			</testclass>
-			<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
-			<duration>$totalDuration ms</duration>
-			<totpassed>$totalPassed</totpassed>
-			<toterror>$totalError</toterror>
-			<totfail>$totalFail</totfail>
-			<totinogre>$totalIgnore</totinogre>
-		</general>
+	<general>
+		<testclass>
+		Test report result: $StringEscapeUtils.escapeHtml($testClassName)
+		</testclass>
+		<generaldesciption>$StringEscapeUtils.escapeHtml($summaryDescription)</generaldesciption>
+		<duration>$totalDuration ms</duration>
+		<totpassed>$totalPassed</totpassed>
+		<toterror>$totalError</toterror>
+		<totfail>$totalFail</totfail>
+		<totinogre>$totalIgnore</totinogre>
+	</general>
 	<test>
 		<name>
 		$StringEscapeUtils.escapeHtml($$keyExampleTest1_testClassName)#$StringEscapeUtils.escapeHtml($$keyExampleTest1_testMethodName)
