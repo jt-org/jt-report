@@ -3,7 +3,7 @@
 1. Download.
 2. Inside Maven surfire plugin.
 3. Standalone in JUnit test class.
-4. Configuration oprions.
+4. Configuration options.
 5. Velocity variables.
 
 ## 1. Download.
@@ -130,5 +130,20 @@ public class SimpleExamplesTest extends JtreportRunner {
 }
 
 ```
+## 4. Configuration options.
+
+### jtreport.properties
+
+```java
+jtreportDir=Report destination directory
+veolocityTemplatePath= path of velocity template, if needed
+customPrinterClass=Custom printer class implements IPrinterStrategy, if needed
+templateWithKey=[true|false], true if you want use template key variable, if needed
+printerType=[DEFAULT|CUSTOM|VELOCITY] DEFAULT for default printer, CUSTOM if you want to use a personal printer defined in customPrinterClass, VELOCITY if you want to use a personal Velocity template defined in veolocityTemplatePath
+reportPrinterFormat=[PDF,ODT,ODS,CSV,HTML,XHTML,XML,PNG,JRXML], one or more separated by comma
+margeReport=[true|false] true if you want to merge the report in one single file.
+```
+
+## 5. Velocity variables.
 
 
