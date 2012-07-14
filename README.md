@@ -65,6 +65,9 @@ public class SimpleExamplesTest {
 
 ### SimpleExamplesTest.java
 
+If you want to use it in a standalone you need to extends JtreportRunner class and use thd ReportTestRunner to run the test.
+This mode is not incompatible with the previous Surfire mode.
+
 ```java
 @RunWith(ReportTestRunner.class)
 @TestClassReport(description = "Put here the description for this test Class.")
