@@ -21,7 +21,7 @@ public class TestMethodResult {
 	private final String testMethodName;
 	private final String testExpectations;
 	private String testKey;
-	private final double runningTime;
+	private final String runningTime;
 
 	/**
 	 * Default Constructor
@@ -47,10 +47,12 @@ public class TestMethodResult {
 	 * @param testKey
 	 *            use test with key for velocity type of report.
 	 */
-	public TestMethodResult(final Description descriptionResult, final String testClassName,
-			final String testMethodName, final String testDescription, final String testExpectations,
-			final DateTime executionDate, final StateTestEnum testState, final String resultDescription,
-			final double runningTime, final String testKey) {
+	public TestMethodResult(final Description descriptionResult,
+			final String testClassName, final String testMethodName,
+			final String testDescription, final String testExpectations,
+			final DateTime executionDate, final StateTestEnum testState,
+			final String resultDescription, final String runningTime,
+			final String testKey) {
 		this.testDescription = testDescription;
 		this.executionDate = executionDate;
 		this.testState = testState;
@@ -65,47 +67,48 @@ public class TestMethodResult {
 	}
 
 	public Description getDescriptionResult() {
-		return descriptionResult;
+		return this.descriptionResult;
 	}
 
 	public DateTime getExecutionDate() {
-		return executionDate;
+		return this.executionDate;
 	}
 
 	public String getFormattdDate() {
-		return executionDate.toString((ISODateTimeFormat.basicDateTimeNoMillis()));
+		return this.executionDate.toString((ISODateTimeFormat
+				.basicDateTimeNoMillis()));
 	}
 
 	public String getResultDescription() {
-		return resultDescription;
+		return this.resultDescription;
 	}
 
-	public double getRunningTime() {
-		return runningTime;
+	public String getRunningTime() {
+		return this.runningTime;
 	}
 
 	public String getTestClassName() {
-		return testClassName;
+		return this.testClassName;
 	}
 
 	public String getTestDescription() {
-		return testDescription;
+		return this.testDescription;
 	}
 
 	public String getTestExpectations() {
-		return testExpectations;
+		return this.testExpectations;
 	}
 
 	public String getTestKey() {
-		return testKey;
+		return this.testKey;
 	}
 
 	public String getTestMethodName() {
-		return testMethodName;
+		return this.testMethodName;
 	}
 
 	public StateTestEnum getTestState() {
-		return testState;
+		return this.testState;
 	}
 
 	public void setResultDescription(final String resultDescription) {

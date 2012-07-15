@@ -1,6 +1,7 @@
 package com.github.jtreport.printer.core;
 
-import static net.sf.dynamicreports.report.builder.DynamicReports.*;
+import static net.sf.dynamicreports.report.builder.DynamicReports.concatenatedReport;
+import static net.sf.dynamicreports.report.builder.DynamicReports.field;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,9 +39,11 @@ import com.github.jtreport.datasource.DataSourceUtils;
  * @author Fabio Rubino.
  * 
  */
-public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrategy {
+public abstract class AbstractPrinterStrategyTemaplate implements
+		IPrinterStrategy {
 
-	// private class CustomTableOfContentsCustomizer extends TableOfContentsCustomizer {
+	// private class CustomTableOfContentsCustomizer extends
+	// TableOfContentsCustomizer {
 	//
 	// private static final long serialVersionUID = 1L;
 	//
@@ -68,32 +71,48 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 
 	private boolean margeReport = false;
 
-	private static final Logger L = LoggerFactory.getLogger(AbstractPrinterStrategyTemaplate.class);
+	private static final Logger L = LoggerFactory
+			.getLogger(AbstractPrinterStrategyTemaplate.class);
 
 	protected abstract void addColumn(JasperReportBuilder report);
 
 	protected abstract void addTitle(JasperReportBuilder report, String title);
 
-	public JasperReportBuilder createReport(final TestClassResult testResult, final JasperReportBuilder report) {
+	public JasperReportBuilder createReport(final TestClassResult testResult,
+			final JasperReportBuilder report) {
 		final Map<StateTestEnum, String> resultTestMap = new HashMap<StateTestEnum, String>();
-		resultTestMap.put(StateTestEnum.PASSED, testResult.getTotalPassed() + "");
+		resultTestMap.put(StateTestEnum.PASSED, testResult.getTotalPassed()
+				+ "");
 		resultTestMap.put(StateTestEnum.ERROR, testResult.getTotalError() + "");
-		resultTestMap.put(StateTestEnum.FAILED, testResult.getTotalFailed() + "");
-		resultTestMap.put(StateTestEnum.IGNORED, testResult.getTotalIgnored() + "");
-		report.addTitle(Templates.createTitleComponent(testResult.getTestClassName(), false));
-		report.title(Templates.createSubTitleComponent(testResult.getDescriptionSummary()));
-		report.title(Templates.createSubTitleTestResult(resultTestMap, testResult.getTotalRun(), ""));
+		resultTestMap.put(StateTestEnum.FAILED, testResult.getTotalFailed()
+				+ "");
+		resultTestMap.put(StateTestEnum.IGNORED, testResult.getTotalIgnored()
+				+ "");
+		report.addTitle(Templates.createTitleComponent(
+				testResult.getTestClassName(), false));
+		report.title(Templates.createSubTitleComponent(testResult
+				.getDescriptionSummary()));
+		report.title(Templates.createSubTitleTestResult(resultTestMap,
+				testResult.getTotalRun(), ""));
 		report.fields(field("state", String.class));
-		report.setTemplate(setReportTemplate());
-		addColumn(report);
-		report.addColumn(Columns.column("Test name", "testName", DataTypes.stringType()));
-		report.addColumn(Columns.column("Test description", "testDescription", DataTypes.stringType()));
-		report.addColumn(Columns.column("Expectations: ", "expectations", DataTypes.stringType()));
-		report.addColumn(Columns.column("Result: ", "resultDescription", DataTypes.stringType()));
+		report.setTemplate(this.setReportTemplate());
+		this.addColumn(report);
+		report.addColumn(Columns.column("Test name", "testName",
+				DataTypes.stringType()));
+		report.addColumn(Columns.column("Test description", "testDescription",
+				DataTypes.stringType()));
+		report.addColumn(Columns.column("Expectations: ", "expectations",
+				DataTypes.stringType()));
+		report.addColumn(Columns.column("Result: ", "resultDescription",
+				DataTypes.stringType()));
 		// report.addColumn(Columns.column("Status Comment", "statusComment",
 		// DataTypes.stringType()));
-		report.addColumn(Columns.column("Date:", "formattedDate", DataTypes.stringType()));
-		report.setDataSource(DataSourceUtils.createDataSource(testResult.getTestMethodResultList()));
+		report.addColumn(Columns.column("Running Time:", "runningTime",
+				DataTypes.stringType()));
+		report.addColumn(Columns.column("Date:", "formattedDate",
+				DataTypes.stringType()));
+		report.setDataSource(DataSourceUtils.createDataSource(testResult
+				.getTestMethodResultList()));
 		report.highlightDetailEvenRows();
 		report.addPageFooter(Components.pageNumber());
 
@@ -101,12 +120,16 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 	}
 
 	// private CustomTableOfContentsCustomizer createTableOfContent() {
-	// final StyleBuilder titleTocStyle = stl.style().setForegroundColor(Color.BLUE).setFontSize(18).bold()
+	// final StyleBuilder titleTocStyle =
+	// stl.style().setForegroundColor(Color.BLUE).setFontSize(18).bold()
 	// .setHorizontalAlignment(HorizontalAlignment.CENTER);
-	// final StyleBuilder headingToc0Style = stl.style(Templates.rootStyle).setFontSize(12).bold();
-	// final StyleBuilder headingToc1Style = stl.style(Templates.rootStyle).italic();
+	// final StyleBuilder headingToc0Style =
+	// stl.style(Templates.rootStyle).setFontSize(12).bold();
+	// final StyleBuilder headingToc1Style =
+	// stl.style(Templates.rootStyle).italic();
 	//
-	// final CustomTableOfContentsCustomizer tableOfContentsCustomizer = new CustomTableOfContentsCustomizer();
+	// final CustomTableOfContentsCustomizer tableOfContentsCustomizer = new
+	// CustomTableOfContentsCustomizer();
 	// tableOfContentsCustomizer.setTitleStyle(titleTocStyle);
 	// tableOfContentsCustomizer.setHeadingStyle(0, headingToc0Style);
 	// tableOfContentsCustomizer.setHeadingStyle(1, headingToc1Style);
@@ -116,31 +139,39 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 	// }
 
 	public boolean isMargeReport() {
-		return margeReport;
+		return this.margeReport;
 	}
 
 	@Override
-	public void print(final Collection<TestClassResult> globalTestResults, final String dirOutPath) {
+	public void print(final Collection<TestClassResult> globalTestResults,
+			final String dirOutPath) {
 		L.info("Number of TestClassReport [" + globalTestResults.size() + "]");
 
-		if (isMargeReport() && (globalTestResults != null) && StringUtils.isNotBlank(dirOutPath)) {
+		if (this.isMargeReport() && (globalTestResults != null)
+				&& StringUtils.isNotBlank(dirOutPath)) {
 			// StringUtils.endsWithAny(dirOutPath, new String[] { "/", "\\" });
-			printMarge(globalTestResults, dirOutPath);
-		} else if ((globalTestResults != null) && StringUtils.isNotBlank(dirOutPath)) {
-			printNoMarge(globalTestResults, dirOutPath);
+			this.printMarge(globalTestResults, dirOutPath);
+		} else if ((globalTestResults != null)
+				&& StringUtils.isNotBlank(dirOutPath)) {
+			this.printNoMarge(globalTestResults, dirOutPath);
 		} else {
-			L.warn("Not print the report because globalTestResults [" + globalTestResults + "], dirOutPath ["
-					+ dirOutPath + "]");
+			L.warn("Not print the report because globalTestResults ["
+					+ globalTestResults + "], dirOutPath [" + dirOutPath + "]");
 		}
 	}
 
-	protected abstract void printConcatenateReport(JasperConcatenatedReportBuilder report, OutputStream os)
+	protected abstract void printConcatenateReport(
+			JasperConcatenatedReportBuilder report, OutputStream os)
 			throws DRException;
 
-	private void printMarge(final Collection<TestClassResult> globalTestResults, final String dirOutPath) {
+	private void printMarge(
+			final Collection<TestClassResult> globalTestResults,
+			final String dirOutPath) {
 
-		String filename = "Jtreport" + new DateTime().toString(ISODateTimeFormat.basicDateTimeNoMillis()) + "_"
-				+ new Random().nextInt(1000) + setExtension();
+		String filename = "Jtreport"
+				+ new DateTime().toString(ISODateTimeFormat
+						.basicDateTimeNoMillis()) + "_"
+				+ new Random().nextInt(1000) + this.setExtension();
 		try {
 			final File dirs = new File(dirOutPath);
 			if (!dirs.exists()) {
@@ -156,30 +187,36 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 			final FileOutputStream fOs = new FileOutputStream(file);
 
 			final JasperReportBuilder report = DynamicReports.report();
-			setBackground(report);
+			this.setBackground(report);
 
-			final ArrayList<TestClassResult> testResultList = new ArrayList<TestClassResult>(globalTestResults);
+			final ArrayList<TestClassResult> testResultList = new ArrayList<TestClassResult>(
+					globalTestResults);
 			final TestClassResult firstClassTest = testResultList.get(0);
 
 			// final String testClassName = firstClassTest.getTestClassName();
-			addTitle(report, "");// FIXME
+			this.addTitle(report, "");// FIXME
 
 			final Collection<JasperReportBuilder> reportList = new ArrayList<JasperReportBuilder>();
 			final int testResultLitSize = testResultList.size();
 			if (testResultLitSize > 1) {
-				final JasperReportBuilder subReport = createReport(firstClassTest, report);
+				final JasperReportBuilder subReport = this.createReport(
+						firstClassTest, report);
 				reportList.add(subReport);
 				testResultList.remove(0);
 			}
 			for (final TestClassResult globalTestResult : testResultList) {
-				final JasperReportBuilder subReport = createReport(globalTestResult, DynamicReports.report());
+				final JasperReportBuilder subReport = this.createReport(
+						globalTestResult, DynamicReports.report());
 				reportList.add(subReport);
 			}
 
-			final JasperConcatenatedReportBuilder concatenateReport = concatenatedReport().continuousPageNumbering()
-					.concatenate(reportList.toArray(new JasperReportBuilder[reportList.size()]));
+			final JasperConcatenatedReportBuilder concatenateReport = concatenatedReport()
+					.continuousPageNumbering().concatenate(
+							reportList
+									.toArray(new JasperReportBuilder[reportList
+											.size()]));
 			// .toPdf(Exporters.pdfExporter("c:/report.pdf"));
-			printConcatenateReport(concatenateReport, fOs);
+			this.printConcatenateReport(concatenateReport, fOs);
 
 		} catch (final DRException e) {
 			L.error("Error during the report creation.", e);
@@ -191,14 +228,19 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 
 	}
 
-	private void printNoMarge(final Collection<TestClassResult> globalTestResults, final String dirOutPath) {
+	private void printNoMarge(
+			final Collection<TestClassResult> globalTestResults,
+			final String dirOutPath) {
 
 		for (final TestClassResult globalTestResult : globalTestResults) {
 			try {
 
-				final String testClassName = globalTestResult.getTestClassName();
-				String filename = testClassName + new DateTime().toString(ISODateTimeFormat.basicDateTimeNoMillis())
-						+ "_" + new Random().nextInt(1000) + setExtension();
+				final String testClassName = globalTestResult
+						.getTestClassName();
+				String filename = testClassName
+						+ new DateTime().toString(ISODateTimeFormat
+								.basicDateTimeNoMillis()) + "_"
+						+ new Random().nextInt(1000) + this.setExtension();
 
 				final File dirs = new File(dirOutPath);
 				if (!dirs.exists()) {
@@ -218,11 +260,11 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 				// ImageScale.FILL);
 
 				final JasperReportBuilder report = DynamicReports.report();
-				setBackground(report);
+				this.setBackground(report);
 				// FIXME
-				addTitle(report, "");
-				createReport(globalTestResult, report);
-				printReport(report, fOs);
+				this.addTitle(report, "");
+				this.createReport(globalTestResult, report);
+				this.printReport(report, fOs);
 			} catch (final DRException e) {
 				L.error("Error during the report creation.", e);
 			} catch (final FileNotFoundException e) {
@@ -233,7 +275,8 @@ public abstract class AbstractPrinterStrategyTemaplate implements IPrinterStrate
 		}
 	}
 
-	public abstract void printReport(JasperReportBuilder report, OutputStream os) throws DRException;
+	public abstract void printReport(JasperReportBuilder report, OutputStream os)
+			throws DRException;
 
 	protected abstract void setBackground(JasperReportBuilder report);
 

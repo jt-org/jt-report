@@ -43,9 +43,10 @@ public class DefaultReportTest {
 
 	@Parameters
 	public static Collection<Object[]> data() {
-		final Object[][] data = new Object[][]{{new PrinterPdfStrategy()}, {new PrinterPngStrategy()},
-				{new PrinterXHtmlStrategy()}, {new PrinterOdtStrategy()}, {new PrinterOdsStrategy()},
-				{new PrinterJrxmlStrategy()}};
+		final Object[][] data = new Object[][] { { new PrinterPdfStrategy() },
+				{ new PrinterPngStrategy() }, { new PrinterXHtmlStrategy() },
+				{ new PrinterOdtStrategy() }, { new PrinterOdsStrategy() },
+				{ new PrinterJrxmlStrategy() } };
 
 		return Arrays.asList(data);
 	}
@@ -59,19 +60,22 @@ public class DefaultReportTest {
 
 	private final AbstractPrinterStrategyTemaplate concretePrinter;
 
-	public DefaultReportTest(final AbstractPrinterStrategyTemaplate concretePrinter) {
+	public DefaultReportTest(
+			final AbstractPrinterStrategyTemaplate concretePrinter) {
 		this.concretePrinter = concretePrinter;
 	}
 
 	@Test
-	@TestSingleReport(description = "il primo esempio di test con desrizione")
+	@TestSingleReport(description = "first test decription")
 	public void testReportCretion() throws DRException, IOException {
 		final JasperReportBuilder report = DynamicReports.report();
-		final TestClassResult testResult = new TestClassResult(this.getClass().getName(), testMethodResultList,
-				"General test description", 0L, 1, 1, 0, 0, 0);
-		final AbstractPrinterStrategyTemaplate printer = concretePrinter;
+		final TestClassResult testResult = new TestClassResult(this.getClass()
+				.getName(), testMethodResultList, "General test description",
+				0L, 1, 1, 0, 0, 0);
+		final AbstractPrinterStrategyTemaplate printer = this.concretePrinter;
 
-		final JasperReportBuilder createdReport = printer.createReport(testResult, report);
+		final JasperReportBuilder createdReport = printer.createReport(
+				testResult, report);
 		Assert.assertNotNull(createdReport);
 		final ByteArrayOutputStream baOs = new ByteArrayOutputStream();
 		printer.printReport(report, baOs);

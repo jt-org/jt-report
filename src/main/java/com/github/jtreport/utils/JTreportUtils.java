@@ -11,6 +11,7 @@ import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
+import java.util.concurrent.TimeUnit;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -26,22 +27,44 @@ import org.slf4j.LoggerFactory;
  */
 public class JTreportUtils {
 
-	private static final Logger L = LoggerFactory.getLogger(JTreportUtils.class);
+	private static final Logger L = LoggerFactory
+			.getLogger(JTreportUtils.class);
+
+	public static String convertTime(final long millisecond) {
+		String timeUnit = " s";
+
+		double secondsDuration = TimeUnit.MILLISECONDS.convert(millisecond,
+				TimeUnit.NANOSECONDS) / 1000.0;
+
+		if (secondsDuration >= 60.0) {
+			timeUnit = " m";
+			secondsDuration = secondsDuration / 60.0;
+		}
+		if (secondsDuration >= 60.0) {
+			timeUnit = " h";
+			secondsDuration = secondsDuration / 60.0;
+		}
+
+		return secondsDuration + timeUnit;
+	}
 
 	public static boolean copyFile(final File toCopy, final File destFile) {
 		try {
-			return JTreportUtils.copyStream(new FileInputStream(toCopy), new FileOutputStream(destFile));
+			return JTreportUtils.copyStream(new FileInputStream(toCopy),
+					new FileOutputStream(destFile));
 		} catch (final FileNotFoundException e) {
 			L.error("File not found [" + destFile + "]", e);
 		}
 		return false;
 	}
 
-	private static boolean copyFilesRecusively(final File toCopy, final File destDir) {
+	private static boolean copyFilesRecusively(final File toCopy,
+			final File destDir) {
 		assert destDir.isDirectory();
 
 		if (!toCopy.isDirectory()) {
-			return JTreportUtils.copyFile(toCopy, new File(destDir, toCopy.getName()));
+			return JTreportUtils.copyFile(toCopy,
+					new File(destDir, toCopy.getName()));
 		} else {
 			final File newDestDir = new File(destDir, toCopy.getName());
 			if (!newDestDir.exists() && !newDestDir.mkdir()) {
@@ -56,26 +79,30 @@ public class JTreportUtils {
 		return true;
 	}
 
-	public static boolean copyJarResourcesRecursively(final File destDir, final JarURLConnection jarConnection)
-			throws IOException {
+	public static boolean copyJarResourcesRecursively(final File destDir,
+			final JarURLConnection jarConnection) throws IOException {
 
 		final JarFile jarFile = jarConnection.getJarFile();
 
-		for (final Enumeration<JarEntry> e = jarFile.entries(); e.hasMoreElements();) {
+		for (final Enumeration<JarEntry> e = jarFile.entries(); e
+				.hasMoreElements();) {
 			final JarEntry entry = e.nextElement();
 			if (entry.getName().startsWith(jarConnection.getEntryName())) {
-				final String filename = StringUtils.removeStart(entry.getName(), jarConnection.getEntryName());
+				final String filename = StringUtils.removeStart(
+						entry.getName(), jarConnection.getEntryName());
 
 				final File f = new File(destDir, filename);
 				if (!entry.isDirectory()) {
-					final InputStream entryInputStream = jarFile.getInputStream(entry);
+					final InputStream entryInputStream = jarFile
+							.getInputStream(entry);
 					if (!JTreportUtils.copyStream(entryInputStream, f)) {
 						return false;
 					}
 					entryInputStream.close();
 				} else {
 					if (!JTreportUtils.ensureDirectoryExists(f)) {
-						final String msgErr = "Could not create directory: " + f.getAbsolutePath();
+						final String msgErr = "Could not create directory: "
+								+ f.getAbsolutePath();
 						L.debug(msgErr);
 						throw new IOException(msgErr);
 					}
@@ -85,13 +112,16 @@ public class JTreportUtils {
 		return true;
 	}
 
-	public static boolean copyResourcesRecursively(final URL originUrl, final File destination) {
+	public static boolean copyResourcesRecursively(final URL originUrl,
+			final File destination) {
 		try {
 			final URLConnection urlConnection = originUrl.openConnection();
 			if (urlConnection instanceof JarURLConnection) {
-				return JTreportUtils.copyJarResourcesRecursively(destination, (JarURLConnection) urlConnection);
+				return JTreportUtils.copyJarResourcesRecursively(destination,
+						(JarURLConnection) urlConnection);
 			} else {
-				return JTreportUtils.copyFilesRecusively(new File(originUrl.getPath()), destination);
+				return JTreportUtils.copyFilesRecusively(
+						new File(originUrl.getPath()), destination);
 			}
 		} catch (final IOException e) {
 			L.error(e.getMessage(), e);
@@ -108,7 +138,8 @@ public class JTreportUtils {
 		return false;
 	}
 
-	private static boolean copyStream(final InputStream is, final OutputStream os) {
+	private static boolean copyStream(final InputStream is,
+			final OutputStream os) {
 		try {
 			final byte[] buf = new byte[1024];
 

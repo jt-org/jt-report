@@ -15,25 +15,31 @@ import com.github.jtreport.core.TestMethodResult;
  */
 public class DataSourceUtils {
 
-	private static final Logger L = LoggerFactory.getLogger(DataSourceUtils.class);
+	private static final Logger L = LoggerFactory
+			.getLogger(DataSourceUtils.class);
 
-	public static DataSource createDataSource(final Collection<TestMethodResult> singleTestResultList) {
-		final DataSource dataSource = new DataSource("state", "testName", "testDescription", "resultDescription",
-				"expectations", "formattedDate", "runningTime");
-		L.debug("Number of test adding in the datasource [" + singleTestResultList.size() + "]");
+	public static DataSource createDataSource(
+			final Collection<TestMethodResult> singleTestResultList) {
+		final DataSource dataSource = new DataSource("state", "testName",
+				"testDescription", "resultDescription", "expectations",
+				"formattedDate", "runningTime");
+		L.debug("Number of test adding in the datasource ["
+				+ singleTestResultList.size() + "]");
 		for (final TestMethodResult testMethodResult : singleTestResultList) {
 			final String testState = testMethodResult.getTestState().name();
 			final String testMethodName = testMethodResult.getTestMethodName();
 			// String testDisplayName = testMethodResult.getTestDisplayName();
-			final String testDescription = testMethodResult.getTestDescription();
-			final String resultDescription = testMethodResult.getResultDescription();
+			final String testDescription = testMethodResult
+					.getTestDescription();
+			final String resultDescription = testMethodResult
+					.getResultDescription();
 			final String formattdDate = testMethodResult.getFormattdDate();
 			final String expectations = testMethodResult.getTestExpectations();
-			final double runningTime = testMethodResult.getRunningTime();
+			final String runningTime = testMethodResult.getRunningTime();
 			// Description descriptionResult =
 			// testMethodResult.getDescriptionResult();
-			dataSource.add(testState, testMethodName, testDescription, resultDescription, expectations, formattdDate,
-					runningTime + "");
+			dataSource.add(testState, testMethodName, testDescription,
+					resultDescription, expectations, formattdDate, runningTime);
 		}
 		return dataSource;
 	}
