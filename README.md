@@ -237,7 +237,7 @@ Velocity template file
 	</general>
 	<test>
 		<name>
-		$StringEscapeUtils.escapeHtml($$keyExampleTest1_testClassName)#$StringEscapeUtils.escapeHtml($$keyExampleTest1_testMethodName)
+		$StringEscapeUtils.escapeHtml($$keyExampleTest1_testClassName)#$StringEscapeUtils.escapeHtml($keyExampleTest1_testMethodName)
 		</name>
 		<state>$keyExampleTest1_testState</state>
 		<description>
